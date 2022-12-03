@@ -2,13 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter
 import math 
-
+from PIL import Image, ImageTk
 
 tasks_list = []
 counter = 1
 PINK = "#e2979c"
 RED = "#e7305b"
-GREEN = "#9bdeac"
+BROWN = "#964B00"
 BLACK = "#002240"
 FONT_NAME = "Courier"
 WORK_MIN = 50
@@ -63,8 +63,7 @@ def clear_screen():
 def reset_timer():
     root.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
-    title_label.config(text="Timer")
-    check_marks.config(text="")
+    title_label.config(text=" TIMER ")
     global reps
     reps = 0
 
@@ -77,11 +76,11 @@ def start_timer():
     
     if reps % 2 == 0:
         count_down(short_break_sec)
-        title_label.config(text="Break", fg=PINK)
+        title_label.config(text=" BREAK ", fg=PINK)
     
     else:
         count_down(work_sec)
-        title_label.config(text="Work", fg=GREEN)
+        title_label.config(text="  WORK ", fg=BROWN)
     if reps == 3:
         clear_screen()
 
@@ -97,11 +96,7 @@ def count_down(count):
         timer = root.after(1000, count_down, count - 1)
     else:
         start_timer()
-        marks = ""
-        work_sessions = math.floor(reps/2)
-        for _ in range(work_sessions):
-            marks += "✓"
-        check_marks.config(text=marks)
+        
 
 
 if __name__ == "__main__" :
@@ -111,9 +106,14 @@ if __name__ == "__main__" :
 
     root.geometry('600x430') 
     
+    b = ImageTk.PhotoImage(file = "bg.jpeg")   
+    limg= Label(root, i=b)
+    limg.pack()
     
-    enterTask = Label(root, text = "  ... TASKS ...")
-    CenterTask = Label(root, text = "Press Enter to submit")
+    
+    
+    enterTask = Label(text=" TASKS ", fg=BROWN, font=(FONT_NAME, 30))
+    CenterTask = Label(root, text = "Press Enter key to submit")
  
     enterTaskField = Entry(root)
  
@@ -124,14 +124,14 @@ if __name__ == "__main__" :
                         
     taskNumberField = Text(root, height = 1, width = 2, font = "lucida 13")
     
-    deltask = Label(root, text = "Press Delete to remove")
+    deltask = Label(root, text = "Press Delete key to remove")
     done = Button(root, text = "Done",  command = delete)
     root.bind('<Return>', insertTask)
     root.bind('<Delete>',delete)
 
  
-    enterTask.place(x = 40, y = 70)
-    CenterTask.place(x = 25, y = 90)
+    enterTask.place(x = 15, y = 30)
+    CenterTask.place(x = 25, y = 85)
                
                
     enterTaskField.place(x = 25, y = 110)
@@ -145,20 +145,18 @@ if __name__ == "__main__" :
     taskNumberField.place(x = 150, y = 350)
     deltask.place(x=25,y=380)
 
-    done.place(x = 155, y = 380)
+    done.place(x = 175, y = 380)
 
-    title_label = Label(text=" Timer", fg=GREEN, font=(FONT_NAME, 30))
+    title_label = Label(text=" TIMER ", fg=BROWN, font=(FONT_NAME, 30))
     title_label.place(x = 370, y = 30)
     canvas = Canvas(root)
     timer_text = canvas.create_text(150, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
     canvas.place(x=285, y=90)
-    start_button = Button(text="Start", highlightthickness=0, command=start_timer)
+    start_button = Button(text=" Start ", highlightthickness=0, command=start_timer)
     start_button.place(x=380, y=250)
-    reset_button = Button(text="Reset", highlightthickness=0, command = reset_timer)
+    reset_button = Button(text=" Reset ", highlightthickness=0, command = reset_timer)
     reset_button.place(x = 440, y = 250)
 
-    check_marks = Label(text="✓", fg=BLACK )
-    check_marks.place(x = 360, y = 300)
 
 
 
