@@ -62,7 +62,8 @@ def delete(e = 0) :
     for i in range(len(tasks_list)) :
         TextArea.insert('end -1 chars', "( " + str(i + 1) + " ) " + tasks_list[i])
 def clear_screen():
-    pass
+    messagebox.showinfo("Over","Three hours completed. Hurray... Now it is time for rest !")
+    reset_timer()
 def reset_timer():
     root.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
