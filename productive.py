@@ -131,22 +131,22 @@ if __name__ == "__main__" :
     root.bind('<Delete>',delete)
 
  
-    enterTask.place(x = 15, y = 30)
-    CenterTask.place(x = 25, y = 85)
+    enterTask.place(x = 35, y = 30)
+    CenterTask.place(x = 45, y = 85)
                
                
-    enterTaskField.place(x = 25, y = 110)
+    enterTaskField.place(x = 45, y = 110)
                         
-    Submit.place(x = 155, y = 110)
+    Submit.place(x = 175, y = 110)
          
-    TextArea.place(x = 25, y = 140)
+    TextArea.place(x = 45, y = 140)
                         
-    taskNumber.place(x = 25, y = 350)
+    taskNumber.place(x = 45, y = 350)
                         
-    taskNumberField.place(x = 150, y = 350)
-    deltask.place(x=25,y=380)
+    taskNumberField.place(x = 170, y = 350)
+    deltask.place(x=45,y=380)
 
-    done.place(x = 175, y = 380)
+    done.place(x = 195, y = 380)
 
     title_label = Label(text=" TIMER ", fg=BROWN, font=(FONT_NAME, 30))
     title_label.place(x = 370, y = 30)
