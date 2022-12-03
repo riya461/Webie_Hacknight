@@ -12,6 +12,6 @@ New tasks to be completed can be added to do list provided. Already completed ta
 ##Link to product walkthrough
 
 
-<img src="https://imgur.com/KLFtyPN">
 
+![WhatsApp Image 2022-12-03 at 23 25 08](https://user-images.githubusercontent.com/90635335/205455037-01660fbf-8e79-4491-a7e1-0874162ff8fb.jpeg)
 
