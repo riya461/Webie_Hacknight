@@ -152,7 +152,7 @@ if __name__ == "__main__" :
     title_label.place(x = 370, y = 30)
     canvas = Canvas(root)
     canvas.pack()
-    timer_text = canvas.create_text(100, 50, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    timer_text = canvas.create_text(150, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
     canvas.place(x=285, y=90)
     start_button = Button(text=" Start ", highlightthickness=0, command=start_timer)
     start_button.place(x=380, y=250)
