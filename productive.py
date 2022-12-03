@@ -19,6 +19,9 @@ timer = None
 def inputError() :
     if enterTaskField.get() == "" :
         messagebox.showinfo("Enter","I dont think there can be an empty task!")
+        enterTaskField.delete(0, END)
+        taskNumberField.delete(0.0, END)
+
         return 0
     return 1
 
@@ -149,15 +152,15 @@ if __name__ == "__main__" :
     done.place(x = 195, y = 380)
 
     title_label = Label(text=" TIMER ", fg=BROWN, font=(FONT_NAME, 30))
-    title_label.place(x = 370, y = 30)
+    title_label.place(x = 360, y = 30)
     canvas = Canvas(root)
     canvas.pack()
-    timer_text = canvas.create_text(150, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    timer_text = canvas.create_text(160, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
     canvas.place(x=285, y=90)
     start_button = Button(text=" Start ", highlightthickness=0, command=start_timer)
-    start_button.place(x=380, y=250)
+    start_button.place(x=390, y=250)
     reset_button = Button(text=" Reset ", highlightthickness=0, command = reset_timer)
-    reset_button.place(x = 440, y = 250)
+    reset_button.place(x = 450, y = 250)
 
 
 
