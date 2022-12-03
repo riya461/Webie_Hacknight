@@ -2,7 +2,7 @@
 This is basically an website created with a To-do-List and an in-built timer.
 
 ## Team Members
-1. [Riya sabu](https://github.com/riya461)
+1. [Riya Sabu](https://github.com/riya461)
 2. [Sera Susan Koshy](https://github.com/serasusan)
 3. [Aswathy K](https://github.com/aswathy5k)
 
@@ -11,5 +11,7 @@ New tasks to be completed can be added to do list provided. Already completed ta
 
 ##Link to product walkthrough
 
+
+<img src="https://imgur.com/KLFtyPN">
 
 
