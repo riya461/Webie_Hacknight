@@ -153,10 +153,10 @@ if __name__ == "__main__" :
 
     title_label = Label(text=" TIMER ", fg=BROWN, font=(FONT_NAME, 30))
     title_label.place(x = 360, y = 30)
-    canvas = Canvas(root)
+    canvas = Canvas(root,height=120,width=150)
     canvas.pack()
-    timer_text = canvas.create_text(160, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
-    canvas.place(x=285, y=90)
+    timer_text = canvas.create_text(75, 70, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    canvas.place(x=375, y=90)
     start_button = Button(text=" Start ", highlightthickness=0, command=start_timer)
     start_button.place(x=390, y=250)
     reset_button = Button(text=" Reset ", highlightthickness=0, command = reset_timer)
