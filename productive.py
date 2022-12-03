@@ -58,8 +58,7 @@ def delete(e = 0) :
  
     for i in range(len(tasks_list)) :
         TextArea.insert('end -1 chars', "( " + str(i + 1) + " ) " + tasks_list[i])
-def clear_screen():
-    pass
+
 def reset_timer():
     root.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
@@ -82,7 +81,7 @@ def start_timer():
         count_down(work_sec)
         title_label.config(text="  WORK ", fg=BROWN)
     if reps == 3:
-        clear_screen()
+        reset_timer()
 
 
 def count_down(count):
