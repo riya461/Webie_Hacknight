@@ -9,11 +9,10 @@ counter = 1
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
-YELLOW = "#002240"
+BLACK = "#002240"
 FONT_NAME = "Courier"
 WORK_MIN = 50
 SHORT_BREAK_MIN = 10
-LONG_BREAK_MIN = 30
 reps = 0
 timer = None
 
@@ -59,7 +58,8 @@ def delete(e = 0) :
  
     for i in range(len(tasks_list)) :
         TextArea.insert('end -1 chars', "( " + str(i + 1) + " ) " + tasks_list[i])
-
+def clear_screen():
+    pass
 def reset_timer():
     root.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
@@ -73,19 +73,19 @@ def start_timer():
     reps += 1
     work_sec = WORK_MIN * 60
     short_break_sec = SHORT_BREAK_MIN * 60
-    long_break_sec = LONG_BREAK_MIN * 60
-    # If it's the 8th rep
-    if reps % 8 == 0:
-        count_down(long_break_sec)
-        title_label.config(text="Break", fg=RED)
-    # If it's the 2nd/4th/6th rep
-    elif reps % 2 == 0:
+    
+    
+    if reps % 2 == 0:
         count_down(short_break_sec)
         title_label.config(text="Break", fg=PINK)
-    # If it's the 1st/3rd/5th/7th rep
+    
     else:
         count_down(work_sec)
         title_label.config(text="Work", fg=GREEN)
+    if reps == 3:
+        clear_screen()
+
+
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -111,8 +111,6 @@ if __name__ == "__main__" :
 
     root.geometry('600x430') 
     
-    title = Label(root, text = "WEBIE")
-    title.place(x = 270, y = 10 )
     
     enterTask = Label(root, text = "  ... TASKS ...")
     CenterTask = Label(root, text = "Press Enter to submit")
@@ -149,19 +147,18 @@ if __name__ == "__main__" :
 
     done.place(x = 155, y = 380)
 
-    Pomodoro = Label(root, text= "  POMODORO")
-    title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 50))
-    Pomodoro.place(x = 390, y = 70)
+    title_label = Label(text=" Timer", fg=GREEN, font=(FONT_NAME, 30))
+    title_label.place(x = 370, y = 30)
     canvas = Canvas(root)
-    timer_text = canvas.create_text(150, 50, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    timer_text = canvas.create_text(150, 90, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
     canvas.place(x=285, y=90)
     start_button = Button(text="Start", highlightthickness=0, command=start_timer)
     start_button.place(x=380, y=250)
     reset_button = Button(text="Reset", highlightthickness=0, command = reset_timer)
     reset_button.place(x = 440, y = 250)
 
-    check_marks = Label(text="✓", fg=GREEN, bg=YELLOW)
-    check_marks.place(x = 400, y = 300)
+    check_marks = Label(text="✓", fg=BLACK )
+    check_marks.place(x = 360, y = 300)
 
 
 
