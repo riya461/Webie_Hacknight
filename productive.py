@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter
 import math 
-from PIL import Image, ImageTk
+from PIL import ImageTk
 
 tasks_list = []
 counter = 1
