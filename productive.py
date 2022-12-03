@@ -58,7 +58,8 @@ def delete(e = 0) :
  
     for i in range(len(tasks_list)) :
         TextArea.insert('end -1 chars', "( " + str(i + 1) + " ) " + tasks_list[i])
-
+def clear_screen():
+    pass
 def reset_timer():
     root.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
@@ -79,9 +80,9 @@ def start_timer():
     
     else:
         count_down(work_sec)
-        title_label.config(text="  WORK ", fg=BROWN)
+        title_label.config(text=" WORK. ", fg=BROWN)
     if reps == 3:
-        reset_timer()
+        clear_screen()
 
 
 def count_down(count):
@@ -103,8 +104,9 @@ if __name__ == "__main__" :
 
     root = tkinter.Tk(className=' Webie: Your productivity sidechick ')
 
-    root.geometry('580x450') 
+    root.geometry('600x430') 
     root.resizable(False,False)
+    
     b = ImageTk.PhotoImage(file = "bg.jpeg")   
     limg= Label(root, i=b)
     limg.pack()
@@ -129,33 +131,33 @@ if __name__ == "__main__" :
     root.bind('<Delete>',delete)
 
  
-    enterTask.place(x = 35, y = 30)
-    CenterTask.place(x = 45, y = 85)
+    enterTask.place(x = 15, y = 30)
+    CenterTask.place(x = 25, y = 85)
                
                
-    enterTaskField.place(x = 45, y = 110)
+    enterTaskField.place(x = 25, y = 110)
                         
-    Submit.place(x = 175, y = 110)
+    Submit.place(x = 155, y = 110)
          
-    TextArea.place(x = 45, y = 140)
+    TextArea.place(x = 25, y = 140)
                         
-    taskNumber.place(x = 45, y = 350)
+    taskNumber.place(x = 25, y = 350)
                         
-    taskNumberField.place(x = 170, y = 350)
-    deltask.place(x=45,y=380)
+    taskNumberField.place(x = 150, y = 350)
+    deltask.place(x=25,y=380)
 
-    done.place(x = 195, y = 380)
+    done.place(x = 175, y = 380)
 
     title_label = Label(text=" TIMER ", fg=BROWN, font=(FONT_NAME, 30))
     title_label.place(x = 370, y = 30)
     canvas = Canvas(root)
     canvas.pack()
-    timer_text = Label( text="00:00", fg="black", font=(FONT_NAME, 35, "bold"))
-    timer_text.place(x=385, y=150)
+    timer_text = canvas.create_text(100, 50, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    canvas.place(x=285, y=90)
     start_button = Button(text=" Start ", highlightthickness=0, command=start_timer)
-    start_button.place(x=400, y=250)
+    start_button.place(x=380, y=250)
     reset_button = Button(text=" Reset ", highlightthickness=0, command = reset_timer)
-    reset_button.place(x = 470, y = 250)
+    reset_button.place(x = 440, y = 250)
 
 
 
