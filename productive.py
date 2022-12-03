@@ -1,10 +1,21 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter
+import math 
 
 
 tasks_list = []
 counter = 1
+PINK = "#e2979c"
+RED = "#e7305b"
+GREEN = "#9bdeac"
+YELLOW = "#002240"
+FONT_NAME = "Courier"
+WORK_MIN = 50
+SHORT_BREAK_MIN = 10
+LONG_BREAK_MIN = 30
+reps = 0
+timer = None
 
 def inputError() :
     if enterTaskField.get() == "" :
@@ -20,7 +31,7 @@ def insertTask(e = 0):
     content = enterTaskField.get() + "\n"
     tasks_list.append(content)
     
-    TextArea.insert('end -1 chars', "[ " + str(counter) + " ] " + content)
+    TextArea.insert('end -1 chars', "( " + str(counter) + " ) " + content)
     counter += 1
 
     enterTaskField.delete(0, END)
@@ -47,7 +58,51 @@ def delete(e = 0) :
     TextArea.delete(1.0, END)
  
     for i in range(len(tasks_list)) :
-        TextArea.insert('end -1 chars', "[ " + str(i + 1) + " ] " + tasks_list[i])
+        TextArea.insert('end -1 chars', "( " + str(i + 1) + " ) " + tasks_list[i])
+
+def reset_timer():
+    root.after_cancel(timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    title_label.config(text="Timer")
+    check_marks.config(text="")
+    global reps
+    reps = 0
+
+def start_timer():
+    global reps
+    reps += 1
+    work_sec = WORK_MIN * 60
+    short_break_sec = SHORT_BREAK_MIN * 60
+    long_break_sec = LONG_BREAK_MIN * 60
+    # If it's the 8th rep
+    if reps % 8 == 0:
+        count_down(long_break_sec)
+        title_label.config(text="Break", fg=RED)
+    # If it's the 2nd/4th/6th rep
+    elif reps % 2 == 0:
+        count_down(short_break_sec)
+        title_label.config(text="Break", fg=PINK)
+    # If it's the 1st/3rd/5th/7th rep
+    else:
+        count_down(work_sec)
+        title_label.config(text="Work", fg=GREEN)
+def count_down(count):
+    count_min = math.floor(count / 60)
+    count_sec = count % 60
+    if count_sec < 10:
+        count_sec = f"0{count_sec}"
+    canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
+    if count > 0:
+        global timer
+        timer = root.after(1000, count_down, count - 1)
+    else:
+        start_timer()
+        marks = ""
+        work_sessions = math.floor(reps/2)
+        for _ in range(work_sessions):
+            marks += "✓"
+        check_marks.config(text=marks)
+
 
 if __name__ == "__main__" :
     
@@ -56,7 +111,10 @@ if __name__ == "__main__" :
 
     root.geometry('600x430') 
     
-    enterTask = Label(root, text = "... Add your Tasks ...")
+    title = Label(root, text = "WEBIE")
+    title.place(x = 270, y = 10 )
+    
+    enterTask = Label(root, text = "  ... TASKS ...")
     CenterTask = Label(root, text = "Press Enter to submit")
  
     enterTaskField = Entry(root)
@@ -90,5 +148,23 @@ if __name__ == "__main__" :
     deltask.place(x=25,y=380)
 
     done.place(x = 155, y = 380)
-    
+
+    Pomodoro = Label(root, text= "  POMODORO")
+    title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 50))
+    Pomodoro.place(x = 390, y = 70)
+    canvas = Canvas(root)
+    timer_text = canvas.create_text(150, 50, text="00:00", fill="black", font=(FONT_NAME, 35, "bold"))
+    canvas.place(x=285, y=90)
+    start_button = Button(text="Start", highlightthickness=0, command=start_timer)
+    start_button.place(x=380, y=250)
+    reset_button = Button(text="Reset", highlightthickness=0, command = reset_timer)
+    reset_button.place(x = 440, y = 250)
+
+    check_marks = Label(text="✓", fg=GREEN, bg=YELLOW)
+    check_marks.place(x = 400, y = 300)
+
+
+
+
+
     root.mainloop()
