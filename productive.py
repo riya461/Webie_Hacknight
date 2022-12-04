@@ -124,7 +124,7 @@ if __name__ == "__main__" :
  
     Submit = Button(root, text = "Submit", command = insertTask)
  
-    TextArea = Text(root, height = 10, width = 18, font = "lucida 13")
+    TextArea = Text(root, height = 10, width = 28, font = "lucida 13")
     taskNumber = Label(root, text = "Delete Task Number")
                         
     taskNumberField = Text(root, height = 1, width = 2, font = "lucida 13")
