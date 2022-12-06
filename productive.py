@@ -85,7 +85,7 @@ def start_timer():
     else:
         count_down(work_sec)
         title_label.config(text=" WORK. ", fg=BROWN)
-    if reps == 3:
+    if reps == 6:
         clear_screen()
 
 
